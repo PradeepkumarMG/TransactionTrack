@@ -23,7 +23,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  *
  */
 @Configuration
-@ComponentScan({"com.bugjetplanner.service","com.budjetplanner.event"})
+@ComponentScan({"com.budjetplanner.service"})
 @EnableJpaRepositories("com.budjetplanner.repository")
 //@PropertySource(value = { "classpath:application.properties" })
 //@EnableTransactionManagement
