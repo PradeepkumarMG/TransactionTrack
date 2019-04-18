@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.spring.web.config;
+package com.budjetplanner.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.spring.web.controller")
+@ComponentScan("com.budjetplanner.controller")
 public class RestApplicationConfig{
 	
 	

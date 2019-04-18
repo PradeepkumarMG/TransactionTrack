@@ -1,13 +1,10 @@
 /**
  * 
  */
-package com.spring.web;
+package com.budjetplanner.config;
 
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import com.spring.config.DBConfig;
-import com.spring.web.config.RestApplicationConfig;
 
 
 /**
