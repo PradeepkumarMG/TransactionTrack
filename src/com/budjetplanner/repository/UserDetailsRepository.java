@@ -15,6 +15,6 @@ import com.budjetplanner.entity.UserDetails;
  */
 public interface UserDetailsRepository extends CrudRepository<UserDetails, Long> {
 	
-	List<UserDetails> findAllByOrderByDateDesc();
+	List<UserDetails> findAll();
 
 }

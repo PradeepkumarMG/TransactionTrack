@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.budjetplanner.entity.UserDetails;
+import com.budjetplanner.domain.UserDomain;
 import com.budjetplanner.event.UserDetailsEvent;
 import com.budjetplanner.service.UserService;
 
@@ -28,54 +28,54 @@ import com.budjetplanner.service.UserService;
 public class UserController {
 
 	@Autowired
-	UserService messageService;
-
-	@Autowired
-	UserDetailsEvent userDetailsEvent;
+	UserService userService;
 
 	@GetMapping("/")
 	public String home() {
 		return "Spring REST";
 	}
 
-	@GetMapping("/messages")
-	public List<UserDetailsEvent> all() {
+	@GetMapping("/allusers")
+	public List<UserDomain> all() {
 
-		List<UserDetailsEvent> messageEventList = new ArrayList<UserDetailsEvent>();
+		List<UserDomain> userDomainList = new ArrayList<UserDomain>();
 
-		for (UserDetails userDetails : messageService.list()) {
-			UserDetailsEvent userDetailsEvent = new UserDetailsEvent();
-			BeanUtils.copyProperties(userDetails, userDetailsEvent);
-			messageEventList.add(userDetailsEvent);
+		for (UserDetailsEvent userDetails : userService.list()) {
+			UserDomain userDomain = new UserDomain();
+			BeanUtils.copyProperties(userDetails,userDomain );
+			userDomainList.add(userDomain);
 		}
 		
-		return messageEventList;
+		return userDomainList;
 	}
 
-	@PostMapping("/message")
-	public UserDetailsEvent create(@RequestBody UserDetails userDetails) {
-
-		BeanUtils.copyProperties(messageService.create(userDetails), userDetailsEvent);
-		return userDetailsEvent;
+	@PostMapping("/user")
+	public UserDomain create(@RequestBody UserDomain userDomain) {
+		UserDomain userDomainDetails = new UserDomain();
+		UserDetailsEvent userDetailsEvent = userService.create(userDomain); 
+		BeanUtils.copyProperties(userDetailsEvent ,userDomainDetails);
+		return userDomainDetails;
 	}
 
-	@GetMapping("/message/{id}")
-	public UserDetailsEvent get(@PathVariable Long id) {
-
-		BeanUtils.copyProperties(messageService.get(id), userDetailsEvent);
-		return userDetailsEvent;
+	@GetMapping("/user/{id}")
+	public UserDomain get(@PathVariable Long id) {
+		
+		UserDomain userDomain = new UserDomain();
+		BeanUtils.copyProperties(userService.get(id), userDomain);
+		return userDomain;
 
 	}
 
-	@PutMapping("/message/{id}")
-	public UserDetailsEvent update(@RequestBody UserDetails userDetails, @PathVariable Long id) {
-
-		BeanUtils.copyProperties(messageService.update(userDetails, id), userDetailsEvent);
-		return userDetailsEvent;
+	@PutMapping("/user/{id}")
+	public UserDomain update(@RequestBody UserDomain userDomain, @PathVariable Long id) {
+		UserDomain userDomainDetails = new UserDomain();
+		UserDetailsEvent userDetailsEvent = userService.update(userDomain, id);
+		BeanUtils.copyProperties(userDetailsEvent, userDomainDetails);
+		return userDomainDetails;
 	}
 
-	@DeleteMapping("/message/{id}")
+	@DeleteMapping("/user/{id}")
 	public void delete(@PathVariable Long id) {
-		messageService.delete(id);
+		userService.delete(id);
 	}
 }

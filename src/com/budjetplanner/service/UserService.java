@@ -5,7 +5,8 @@ package com.budjetplanner.service;
 
 import java.util.List;
 
-import com.budjetplanner.entity.UserDetails;
+import com.budjetplanner.domain.UserDomain;
+import com.budjetplanner.event.UserDetailsEvent;
 
 /**
  * @author Pradeep
@@ -13,9 +14,9 @@ import com.budjetplanner.entity.UserDetails;
  */
 public interface UserService {
 	
-	UserDetails create(UserDetails userDetails);
-	UserDetails get(Long id);
-	List<UserDetails> list();
-	UserDetails update(UserDetails userDetails, Long id);
-	void delete(Long id);
+	public UserDetailsEvent create(UserDomain userDomain);
+	public UserDetailsEvent get(Long id);
+	public List<UserDetailsEvent> list();
+	public UserDetailsEvent update(UserDomain userDomain, Long id);
+	public void delete(Long id);
 }

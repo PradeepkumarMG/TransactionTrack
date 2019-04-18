@@ -13,14 +13,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author Pradeep
  *
  */
-@Component
 public class UserDetailsEvent {
 
 	public Long id;
-	public String senderName;
-	public String message;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm z")
-	public Date date;
+	public String userName;
 	
 	
 	public UserDetailsEvent() {
@@ -40,43 +36,17 @@ public class UserDetailsEvent {
 		this.id = id;
 	}
 	/**
-	 * @return the senderName
+	 * @return the userName
 	 */
-	public String getSenderName() {
-		return senderName;
+	public String getUserName() {
+		return userName;
 	}
 	/**
-	 * @param senderName the senderName to set
+	 * @param userName the userName to set
 	 */
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
-	}
-	/**
-	 * @return the message
-	 */
-	public String getMessage() {
-		return message;
-	}
-	/**
-	 * @param message the message to set
-	 */
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	
-	
-
 }
