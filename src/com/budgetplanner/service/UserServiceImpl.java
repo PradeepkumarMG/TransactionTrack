@@ -1,20 +1,21 @@
 /**
  * 
  */
-package com.budjetplanner.service;
+package com.budgetplanner.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import com.budjetplanner.domain.UserDomain;
-import com.budjetplanner.entity.UserDetails;
-import com.budjetplanner.event.UserDetailsEvent;
-import com.budjetplanner.repository.UserDetailsRepository;
+import com.budgetplanner.domain.UserDomain;
+import com.budgetplanner.entity.UserDetails;
+import com.budgetplanner.event.UserDetailsEvent;
+import com.budgetplanner.repository.UserDetailsRepository;
 
 /**
  * @author Pradeep
@@ -79,5 +80,34 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void delete(Long id) {
 		userRepo.delete(id);	
+	}
+
+	@Override
+	public String userLogIn(String userName, String password) {
+		
+		String response = null ;
+		
+		if(StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)) {
+			
+			
+			UserDetails userDetails = userRepo.findByUserName(userName);
+			
+			if(userDetails != null && StringUtils.isNotBlank(userDetails.getPassword())) {
+				
+				if(userDetails.getPassword().equals(password)) {
+					
+					response = "valid";
+					return response;
+				}
+				
+				else {
+					
+					//Exception
+				}
+					
+					
+			}
+		}
+		return response;
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.budjetplanner.domain;
+package com.budgetplanner.domain;
 
 /**
  * @author Sriram

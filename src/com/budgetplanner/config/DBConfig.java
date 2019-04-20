@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.budjetplanner.config;
+package com.budgetplanner.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -22,8 +22,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  *
  */
 @Configuration
-//@ComponentScan()
-@EnableJpaRepositories("com.budjetplanner.repository")
+@EnableJpaRepositories("com.budgetplanner.repository")
 //@PropertySource(value = { "classpath:application.properties" })
 //@EnableTransactionManagement
 public class DBConfig {
@@ -68,7 +67,7 @@ public class DBConfig {
 		bean.setDataSource(dataSource());
 		// bean.setJpaProperties(hibernateProperties());
 		bean.setJpaVendorAdapter(jpaVendorAdapter());
-		bean.setPackagesToScan(new String[] { "com.budjetplanner.entity" });
+		bean.setPackagesToScan(new String[] { "com.budgetplanner.entity" });
 		return bean;
 	}
 

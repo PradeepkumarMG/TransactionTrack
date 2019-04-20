@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.budjetplanner.controller;
+package com.budgetplanner.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.budjetplanner.domain.UserDomain;
-import com.budjetplanner.event.UserDetailsEvent;
-import com.budjetplanner.service.UserService;
+import com.budgetplanner.domain.UserDomain;
+import com.budgetplanner.event.UserDetailsEvent;
+import com.budgetplanner.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -87,5 +87,15 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	public void delete(@PathVariable Long id) {
 		userService.delete(id);
+	}
+	
+	@ApiOperation(value = "Login validation for the user")
+	@GetMapping("/user/{userName}/{password}")
+	//Add exception
+	public String userLogIn(@PathVariable String userName, @PathVariable String password ) {
+		
+		String response = userService.userLogIn(userName,password);
+		return response;
+		
 	}
 }
