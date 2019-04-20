@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
+@Table(name = "USER_DETAILS")
 public class UserDetails implements Serializable{
 	
 	/**
@@ -28,22 +28,6 @@ public class UserDetails implements Serializable{
 	public String userName;
 	public String password;
 	
-	public UserDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param id
-	 * @param userName
-	 * @param password
-	 */
-	public UserDetails(Long id, String userName, String password) {
-		super();
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-	}
 
 	/**
 	 * @return the id
@@ -85,14 +69,6 @@ public class UserDetails implements Serializable{
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "UserDetails [id=" + id + ", userName=" + userName + ", password=" + password + "]";
 	}
 	
 	

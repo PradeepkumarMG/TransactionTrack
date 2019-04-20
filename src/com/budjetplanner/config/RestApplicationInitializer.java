@@ -15,7 +15,7 @@ public class RestApplicationInitializer extends AbstractAnnotationConfigDispatch
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { DBConfig.class };
+		return new Class[] { DBConfig.class};
 	}
 
 	@Override

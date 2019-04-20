@@ -20,21 +20,26 @@ import com.budjetplanner.domain.UserDomain;
 import com.budjetplanner.event.UserDetailsEvent;
 import com.budjetplanner.service.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author Pradeep
  *
  */
+@Api(value = "Controller")
 @RestController
 public class UserController {
 
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/")
+	@GetMapping("/a")
 	public String home() {
 		return "Spring REST";
 	}
 
+	@ApiOperation(value = "Get list of Users in the System ")
 	@GetMapping("/allusers")
 	public List<UserDomain> all() {
 
@@ -49,6 +54,7 @@ public class UserController {
 		return userDomainList;
 	}
 
+	@ApiOperation(value = "Create Users in the System ")	
 	@PostMapping("/user")
 	public UserDomain create(@RequestBody UserDomain userDomain) {
 		UserDomain userDomainDetails = new UserDomain();
@@ -57,6 +63,7 @@ public class UserController {
 		return userDomainDetails;
 	}
 
+	@ApiOperation(value = "Get User for id in the System ")
 	@GetMapping("/user/{id}")
 	public UserDomain get(@PathVariable Long id) {
 		
@@ -66,6 +73,7 @@ public class UserController {
 
 	}
 
+	@ApiOperation(value = "Update User for id in the System ")
 	@PutMapping("/user/{id}")
 	public UserDomain update(@RequestBody UserDomain userDomain, @PathVariable Long id) {
 		UserDomain userDomainDetails = new UserDomain();
@@ -74,6 +82,8 @@ public class UserController {
 		return userDomainDetails;
 	}
 
+	
+	@ApiOperation(value = "Delete User for given id in the System ")
 	@DeleteMapping("/user/{id}")
 	public void delete(@PathVariable Long id) {
 		userService.delete(id);

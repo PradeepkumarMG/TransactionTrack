@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -23,20 +22,20 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  *
  */
 @Configuration
-@ComponentScan({"com.budjetplanner.service"})
+//@ComponentScan()
 @EnableJpaRepositories("com.budjetplanner.repository")
 //@PropertySource(value = { "classpath:application.properties" })
 //@EnableTransactionManagement
 public class DBConfig {
-	
+
 //    @Autowired
 //    private Environment environment;
-	
+
 	@Bean
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
 	}
-	
+
 //    @Bean
 //    public DataSource dataSource() {
 //        DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -46,7 +45,7 @@ public class DBConfig {
 //        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
 //        return dataSource;
 //    }
-    
+
 //    private Properties hibernateProperties() {
 //        Properties properties = new Properties();
 //        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
@@ -54,7 +53,6 @@ public class DBConfig {
 //        properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
 //        return properties;        
 //    }
-    
 
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
@@ -68,9 +66,9 @@ public class DBConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
 		bean.setDataSource(dataSource());
-	//	bean.setJpaProperties(hibernateProperties());
+		// bean.setJpaProperties(hibernateProperties());
 		bean.setJpaVendorAdapter(jpaVendorAdapter());
-		bean.setPackagesToScan(new String[] {"com.budjetplanner.entity"});
+		bean.setPackagesToScan(new String[] { "com.budjetplanner.entity" });
 		return bean;
 	}
 
@@ -79,5 +77,7 @@ public class DBConfig {
 		return new JpaTransactionManager(emf);
 	}
 	
-	 
+	
+
+	
 }
